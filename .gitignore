@@ -138,3 +138,13 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 .flattened-pom.xml
+
+### Gauge ###
+.gauge/
+
+# Sensitive environment variables
+/env/default/user.properties
+
+# Logs and Reports
+reports/
+logs/
