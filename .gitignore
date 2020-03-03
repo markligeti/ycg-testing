@@ -143,6 +143,7 @@ buildNumber.properties
 .gauge/
 
 # Sensitive environment variables
+/env/default/project.properties
 /env/default/user.properties
 
 # Logs and Reports
