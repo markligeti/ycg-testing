@@ -6,7 +6,9 @@ import com.thoughtworks.gauge.Step;
 import driver.Driver;
 import org.openqa.selenium.WebDriver;
 
-public abstract class BaseTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class BaseTest {
     WebDriver driver = Driver.webDriver;
     String baseURL = Utility.getBaseURL();
 
@@ -20,6 +22,16 @@ public abstract class BaseTest {
     public void logout() {
         hoverOverProfileButton();
         clickOnLogoutButton();
+    }
+
+    @Step("Open YCG homepage")
+    public void openHomepage() {
+        driver.get(this.baseURL);
+    }
+
+    @Step("Title is correct")
+    public void assertTitleIsCorrect() {
+        assertTrue(Driver.webDriver.getTitle().contains("Yacht Charter Guru"));
     }
 
     @Step("Hover over Profile button")
