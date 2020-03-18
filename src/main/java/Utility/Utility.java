@@ -1,5 +1,8 @@
 package Utility;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Utility {
 
     public static String getBaseURL() {
@@ -8,13 +11,27 @@ public class Utility {
         return System.getenv(envVar);
     }
 
-    public static String getUsername(String access) {
+    private static String getUsername(String access) {
         String envVar = "USERNAME_" + access.toUpperCase();
         return System.getenv(envVar);
     }
 
-    public static String getPassword(String access) {
+    private static String getPassword(String access) {
         String envVar = "PASSWORD_" + access.toUpperCase();
         return System.getenv(envVar);
     }
+
+    private static String getEmail(String access) {
+        String envVar = "EMAIL_" + access.toUpperCase();
+        return System.getenv(envVar);
+    }
+
+    public static User getUser(String access) {
+        Map<String, String> userData = new HashMap<>();
+        userData.put("username", getUsername(access));
+        userData.put("password", getPassword(access));
+        userData.put("email", getEmail(access));
+        return new User(userData);
+    }
+
 }
