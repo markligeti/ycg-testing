@@ -1,28 +1,35 @@
 # Log in
-Tags: account
+
+tags: account
 
    |user_access|
    |-----------|
-   |admin      |
    |user       |
-   |-----------|
 
 * Open YCG homepage
-* Hover over Profile button and select Login/Registration
+* Hover over Account button and select Login/Registration
 
 ## Successful login
-Tags: login, successful
+
+tags: login, successful
+
 * Enter <user_access> credentials and click on Login button
-* Hover over Profile button and check email address of <user_access>
+* Close the successful login modal which appeared after page reload
+* Hover over Account button and check email address of <user_access>
 
   teardown step defined in execution hook
 
 ## Failed login with bad username
-Tags: login, failed
+
+tags: login, failed
+
 * Enter "bad_username" credentials and click on Login button
-* Hover over Profile button and see Login/Registration button
+* Login fails and an error message appears after page reload
+* Hover over Account button and see Login/Registration button
 
 ## Failed login with bad password
-Tags: login, failed
+
+tags: login, failed
+
 * Enter "bad_password" credentials and click on Login button
-* Hover over Profile button and see Login/Registration button
+* Hover over Account button and see Login/Registration button

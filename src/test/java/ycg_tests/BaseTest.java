@@ -1,9 +1,12 @@
 package ycg_tests;
 
+import POM.MainPage;
+import Utility.User;
 import Utility.Utility;
 import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.Step;
 import driver.Driver;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,22 +14,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BaseTest {
     WebDriver driver = Driver.webDriver;
     String baseURL = Utility.getBaseURL();
+    MainPage mainPage = new MainPage(driver);
 
-    String USERNAME_USER = Utility.getUsername("user");
-    String PASSWORD_USER = Utility.getPassword("user");
-    String USERNAME_ADMIN = Utility.getUsername("admin");
-    String PASSWORD_ADMIN = Utility.getPassword("admin");
-
+    User admin = Utility.getUser("admin");
+    User user = Utility.getUser("user");
 
     @AfterScenario(tags = {"login, successful"})
     public void logout() {
+        System.out.println("!!! AFTER SCENARIO !!!");
         hoverOverProfileButton();
         clickOnLogoutButton();
     }
 
     @Step("Open YCG homepage")
     public void openHomepage() {
-        driver.get(this.baseURL);
+        driver.get(baseURL);
     }
 
     @Step("Title is correct")
@@ -34,38 +36,31 @@ public class BaseTest {
         assertTrue(Driver.webDriver.getTitle().contains("Yacht Charter Guru"));
     }
 
-    @Step("Hover over Profile button")
+    @Step("Hover over Account button")
     public void hoverOverProfileButton() {
-
+        mainPage.hoverOverAccountButton();
     }
 
     @Step("Select Login/Registration button")
     public void selectLoginRegButton() {
+        mainPage.clickOnLoginButton();
+    }
 
+    @Step("Select Logout button")
+    public void clickOnLogoutButton() {
+        mainPage.clickOnLogoutButton();
     }
 
     @Step("See the email address of <user_access>")
-    public void assertEmailAddressVisibleAndCorrect(String emailAddress) {
-
-    }
-
-    @Step("Click on Login button")
-    public void clickOnLoginButton() {
-
-    }
-
-    @Step("Click on Logout button")
-    public void clickOnLogoutButton() {
-
-    }
-
-    @Step("Enter <user_access> credentials")
-    public void enterCredentials(String userAccess) {
-
+    public void assertEmailAddressVisibleAndCorrect(String userAccess) {
+        String email = Utility.getUser(userAccess).getEmail();
+        String accountEmail = mainPage.getAccountEmail();
+        Assertions.assertEquals("(" + email + ")", accountEmail);
     }
 
     @Step("Check Login/Registration button")
     public void assertLoginRegButtonAvailable() {
 
     }
+
 }
