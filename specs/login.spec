@@ -33,3 +33,6 @@ tags: login, failed
 * Enter credentials of <user_access> with "invalid password" and click on Login button
 * Login fails and an error message appears after page reload
 * Hover over Account button and see Login/Registration button
+___
+
+* Log out

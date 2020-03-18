@@ -1,6 +1,7 @@
 package POM;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,7 +49,13 @@ public class Page extends BasePage {
     }
 
     public void clickOnLogoutButton() {
-        clickOn(logoutButton);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
+            clickOn(logoutButton);
+        } catch (TimeoutException te) {
+            System.out.println("already ");
+        }
+        System.out.println("logged out");
     }
 
     public String getAccountEmail() {

@@ -1,9 +1,7 @@
 package ycg_tests;
 
 import POM.MainPage;
-import Utility.User;
 import Utility.Utility;
-import com.thoughtworks.gauge.AfterScenario;
 import com.thoughtworks.gauge.Step;
 import driver.Driver;
 import org.junit.jupiter.api.Assertions;
@@ -16,15 +14,14 @@ public class BaseTest {
     String baseURL = Utility.getBaseURL();
     MainPage mainPage = new MainPage(driver);
 
-    User admin = Utility.getUser("admin");
-    User user = Utility.getUser("user");
-
+/*
     @AfterScenario(tags = {"login, successful"})
     public void logout() {
         System.out.println("!!! AFTER SCENARIO !!!");
         hoverOverProfileButton();
         clickOnLogoutButton();
     }
+*/
 
     @Step("Open YCG homepage")
     public void openHomepage() {
