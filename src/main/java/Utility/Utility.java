@@ -34,4 +34,18 @@ public class Utility {
         return new User(userData);
     }
 
+    public static User getUser(String access, String validity) {
+        Map<String, String> userData = new HashMap<>();
+        userData.put("username", getUsername(access));
+        userData.put("password",
+                validity.equals("invalid password")
+                ? getPassword(access).toUpperCase()
+                : getPassword(access));
+        userData.put("email",
+                validity.equals("invalid email")
+                ? getEmail(access) + "a"
+                : getEmail(access));
+        return new User(userData);
+    }
+
 }
