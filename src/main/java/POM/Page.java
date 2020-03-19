@@ -1,18 +1,17 @@
 package POM;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import CustomExceptions.LanguageNotAvailableException;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Page extends BasePage {
 
-    @FindBy(id = "account-button")
-    WebElement accountButton;
     @FindBy(id = "lang-button")
     WebElement langSelect;
+
+    @FindBy(id = "account-button")
+    WebElement accountButton;
 
     // ACCOUNT - GUEST
     @FindBy(id = "account-login account-registration")
@@ -40,8 +39,14 @@ public class Page extends BasePage {
 
     public void hoverOverAccountButton() {
         if (accountButton == null) {
-            this.accountButton = driver.findElement(By.id("account-button"));
+            accountButton = driver.findElement(By.id("account-button"));
         } hoverOver(accountButton);
+    }
+
+    public void hoverOverLangSelect() {
+        if (langSelect == null) {
+            langSelect = driver.findElement(By.id("lang-button"));
+        } hoverOver(langSelect);
     }
 
     public void clickOnLoginButton() {
@@ -50,12 +55,21 @@ public class Page extends BasePage {
 
     public void clickOnLogoutButton() {
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
             clickOn(logoutButton);
         } catch (TimeoutException te) {
-            System.out.println("already ");
+            System.out.print("already ");
+        } System.out.println("logged out");
+    }
+
+    public void selectLanguage(String lang) {
+        String selector = "lang-" + lang;
+        try {
+            WebElement langButton = driver.findElement(By.id(selector));
+            clickOn(langButton);
+            System.out.print("language selected: " + lang);
+        } catch (NoSuchElementException nse) {
+            throw new LanguageNotAvailableException(lang);
         }
-        System.out.println("logged out");
     }
 
     public String getAccountEmail() {

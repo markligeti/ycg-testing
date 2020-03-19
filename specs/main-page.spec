@@ -2,4 +2,5 @@
 
 ## Page load test
 * Open YCG homepage
+* Select language
 * Title is correct

@@ -8,6 +8,7 @@ tags: account
    |admin      |
 
 * Open YCG homepage
+* Select language
 * Hover over Account button and select Login/Registration
 
 ## Successful login

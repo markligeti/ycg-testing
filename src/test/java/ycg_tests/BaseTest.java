@@ -60,4 +60,12 @@ public class BaseTest {
 
     }
 
+    @Step("Select language")
+    public void selectLanguage() {
+        String lang = System.getenv("LANGUAGE").toLowerCase();
+        if (!lang.equals("hu")) {
+            mainPage.hoverOverLangSelect();
+            mainPage.selectLanguage(lang);
+        }
+    }
 }

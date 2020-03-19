@@ -3,6 +3,7 @@
 tags: account
 
 * Open YCG homepage
+* Select language
 * Log in as "user"
 
 ## Successful logout
